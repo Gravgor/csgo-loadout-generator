@@ -1,5 +1,4 @@
-import { SessionProvider } from "next-auth/react"
-import { NextAuthProvider } from './providers'
+import { NextAuthProvider } from '../../lib/providers'
 
 
 

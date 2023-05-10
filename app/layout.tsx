@@ -1,5 +1,7 @@
+import Navbar from '@/components/Navbar'
 import './globals.css'
 import { Montserrat } from 'next/font/google'
+import { NextAuthProvider } from '../lib/providers'
 
 
 const montserrat = Montserrat({
@@ -19,6 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
+        <NextAuthProvider>
+          <Navbar />
+        </NextAuthProvider>
           {children}
         </body>
     </html>
