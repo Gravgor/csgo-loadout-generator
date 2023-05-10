@@ -1,10 +1,8 @@
-import './globals.css'
-import { Montserrat } from 'next/font/google'
+import { SessionProvider } from "next-auth/react"
+import { NextAuthProvider } from './providers'
 
 
-const montserrat = Montserrat({
-  subsets: ['latin'],
-})
+
 
 export const metadata = {
   title: 'CSGO Loadout Generator',
@@ -18,8 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body>
+        <NextAuthProvider>
           {children}
+        </NextAuthProvider>
         </body>
     </html>
   )
