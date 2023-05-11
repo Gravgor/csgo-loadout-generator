@@ -6,17 +6,28 @@ import { authOptions } from '../../auth/[...nextauth]/route';
 const prisma = new PrismaClient();
 
 export async function GET(request: Request){
-    const session = await getServerSession(authOptions)
-    if(!session){
+    const {searchParams} = new URL(request.url)
+    const address = searchParams.get('email')
+    if(!address){
         return NextResponse.json({
-            error: 'You must be signed in to view the protected content on this page.',
-            status: 401
+            error: 'Email is required.',
+            status: 400
         })
     }
-    const {id} = session.user
+    const user = await prisma.user.findUnique({
+        where: {
+            email: address
+        }
+    })
+    if(!user){
+        return NextResponse.json({
+            error: 'User not found.',
+            status: 404
+        })
+    }
     const loadouts = await prisma.loadout.findMany({
         where: {
-            userId: id
+            userId: user.id
         },
         include: {
             items: true
