@@ -1,5 +1,5 @@
 "use client"
-import { signIn, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 import Link from "next/link"
 
 export default function Navbar() {
@@ -23,6 +23,11 @@ export default function Navbar() {
                 <Link className="text-text" href="/user">
                     My Account
                 </Link>
+                <button className="bg-primary text-white px-4 py-1 relative top-1 rounded-md hover:bg-primary-dark transition-colors duration-300" onClick={() => {
+                    signOut()
+                }}>Sign out
+                
+                </button>
                 </>
                 ) : (
                    <>

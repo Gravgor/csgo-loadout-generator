@@ -1,12 +1,8 @@
 import NextAuth from "next-auth";
-import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
-export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Sign in",
@@ -14,25 +10,28 @@ export const authOptions: NextAuthOptions = {
         email: {
           label: "Email",
           type: "email",
-          placeholder: "johndoe@email.com",
+          placeholder: "",
         },
         password: { label: "Password", type: "password" },
       },
-      //@ts-ignore
       async authorize(credentials) {
-        const user = fetch(`${process.env.NEXT_API_URL}/api/user`,
-          {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(credentials),
-          })
-        return user;
-      },
-    }),
+        const res = await fetch(`${process.env.NEXT_API_URL}user`, {
+          method: 'POST',
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" }
+        })
+        const user = await res.json()
+        if(user && user.email){
+          return user
+        } else {
+          return null
+        }
+      }
+    })
   ],
-};
+  pages: {
+    signIn: '/auth/signin',
+  }
+})
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export {handler as GET, handler as POST}

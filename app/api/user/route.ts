@@ -22,7 +22,7 @@ export async function GET(request: Request){
 export async function POST(request: Request){
     const {email, password} = await request.json();
     if(!email || !password){
-        return new Response('Email and password are required', {status: 400});
+        return NextResponse.json('Email and password are required', {status: 400});
     }
     const user = await prisma.user.findUnique({
         where: {
@@ -30,11 +30,11 @@ export async function POST(request: Request){
         }
     })
     if(!user){
-        return new Response('Invalid credentials', {status: 401});
+        return NextResponse.json('User not find', {status: 404});
     } else {
         const valid = await compare(password, user.password);
         if(!valid){
-            return new Response('Invalid credentials', {status: 401});
+            return NextResponse.json('Invalid credentials', {status: 404});
         } else {
             return NextResponse.json(user);
         }

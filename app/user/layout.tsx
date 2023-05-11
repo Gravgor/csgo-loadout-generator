@@ -1,5 +1,3 @@
-import { NextAuthProvider } from '../../lib/providers'
-
 
 
 
@@ -16,9 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider>
           {children}
-        </NextAuthProvider>
         </body>
     </html>
   )

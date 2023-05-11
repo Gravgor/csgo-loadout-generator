@@ -2,71 +2,109 @@ import Image from "next/image";
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-8">
-      <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-        <div className="w-full md:w-1/2 px-4">
-          <div className="md:pr-12">
-            <h2 className="text-4xl font-bold mb-2 text-gray-800">
-              Customer Testimonials
-            </h2>
-            <p className="text-gray-600 mb-6">
-              See what our users are saying about our app
-            </p>
-            <div className="flex items-center w-full mb-4">
-              <div className="bg-gray-300 h-12 w-12 flex items-center justify-center rounded-full mr-4">
+    <section>
+      <div className="container px-4">
+        <h2 className="text-4xl font-bold text-center text-text mb-2">Testimonials</h2>
+        <p className="text-gray-400 text-center mb-8">
+            See what our users have to say about us!
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col items-start justify-center">
                 <Image
-                  src="/images/user.jpg"
-                  width={10}
-                  height={10}
-                  className="h-10 w-10 rounded-full"
-                  alt="User 3"
-                />{" "}
-              </div>
-              <div className="flex-grow">
-                <p className="text-gray-800 font-bold">John Doe</p>
-                <p className="text-gray-600">
-                  &quotI love this app! It has saved me so much time and
-                  effort.&quot
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center w-full mb-4">
-              <div className="bg-gray-300 h-12 w-12 flex items-center justify-center rounded-full mr-4">
-                <Image
-                  src="/images/user.jpg"
-                  width={10}
-                  height={10}
-                  className="h-10 w-10 rounded-full"
-                  alt="User 3"
+                    src="/images/user.png"  
+                    alt="User"
+                    width={100}
+                    height={200}
+                    className="rounded-full"
                 />
-              </div>
-              <div className="flex-grow">
-                <p className="text-gray-800 font-bold">Jane Smith</p>
-                <p className="text-gray-600">
-                  &quotThis app is amazing! It has completely changed the way I
-                  work.&quot
+                <h3 className="text-2xl font-bold text-text mt-4">John Doe</h3>
+                <p className="text-gray-400 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam nec urna at augue fringilla fermentum eu vel enim.
+                    Mauris scelerisque ante ac erat dictum, in laoreet massa
+                    eleifend. Donec a lectus in ligula imperdiet pharetra.
                 </p>
-              </div>
             </div>
-            <div className="flex items-center w-full mb-4">
-              <div className="bg-gray-300 h-12 w-12 flex items-center justify-center rounded-full mr-4">
+            <div className="flex flex-col items-start justify-center">
                 <Image
-                  src="/images/user.jpg"
-                  width={10}
-                  height={10}
-                  className="h-10 w-10 rounded-full"
-                  alt="User 3"
+                    src="/images/user.png"  
+                    alt="User"
+                    width={100}
+                    height={200}
+                    className="rounded-full"
                 />
-              </div>
-              <div className="flex-grow">
-                <p className="text-gray-800 font-bold">Bob Johnson</p>
-                <p className="text-gray-600">
-                  &quotIve tried so many apps before, but this one is the best
-                  by far.&quot
+                <h3 className="text-2xl font-bold text-text mt-4">John Doe</h3>
+                <p className="text-gray-400 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam nec urna at augue fringilla fermentum eu vel enim.
+                    Mauris scelerisque ante ac erat dictum, in laoreet massa
+                    eleifend. Donec a lectus in ligula imperdiet pharetra.
                 </p>
-              </div>
             </div>
-          </div>
+            <div className="flex flex-col items-start justify-center">
+                <Image
+                    src="/images/user.png"  
+                    alt="User"
+                    width={100}
+                    height={200}
+                    className="rounded-full"
+                />
+                <h3 className="text-2xl font-bold text-text mt-4">John Doe</h3>
+                <p className="text-gray-400 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam nec urna at augue fringilla fermentum eu vel enim.
+                    Mauris scelerisque ante ac erat dictum, in laoreet massa
+                    eleifend. Donec a lectus in ligula imperdiet pharetra.
+                </p>
+            </div>
+            <div className="flex flex-col items-start justify-center">
+                <Image
+                    src="/images/user.png"  
+                    alt="User"
+                    width={100}
+                    height={200}
+                    className="rounded-full"
+                />
+                <h3 className="text-2xl font-bold text-text mt-4">John Doe</h3>
+                <p className="text-gray-400 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam nec urna at augue fringilla fermentum eu vel enim.
+                    Mauris scelerisque ante ac erat dictum, in laoreet massa
+                    eleifend. Donec a lectus in ligula imperdiet pharetra.
+                </p>
+            </div>
+            <div className="flex flex-col items-start justify-center">
+                <Image
+                    src="/images/user.png"  
+                    alt="User"
+                    width={100}
+                    height={200}
+                    className="rounded-full"
+                />
+                <h3 className="text-2xl font-bold text-text mt-4">John Doe</h3>
+                <p className="text-gray-400 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam nec urna at augue fringilla fermentum eu vel enim.
+                    Mauris scelerisque ante ac erat dictum, in laoreet massa
+                    eleifend. Donec a lectus in ligula imperdiet pharetra.
+                </p>
+            </div>
+            <div className="flex flex-col items-start justify-center">
+                <Image
+                    src="/images/user.png"  
+                    alt="User"
+                    width={100}
+                    height={200}
+                    className="rounded-full"
+                />
+                <h3 className="text-2xl font-bold text-text mt-4">John Doe</h3>
+                <p className="text-gray-400 mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam nec urna at augue fringilla fermentum eu vel enim.
+                    Mauris scelerisque ante ac erat dictum, in laoreet massa
+                    eleifend. Donec a lectus in ligula imperdiet pharetra.
+                </p>
+            </div>
         </div>
       </div>
     </section>
