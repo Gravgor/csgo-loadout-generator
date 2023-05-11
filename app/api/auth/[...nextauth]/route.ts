@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
           headers: { "Content-Type": "application/json" }
         })
         const user = await res.json()
-        if(user && user.email){
+        if(user && user.email && user.id){
           return user
         } else {
           return null
