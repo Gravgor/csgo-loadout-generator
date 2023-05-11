@@ -6,16 +6,14 @@ export const metadata = {
   description: 'A loadout generator for Counter-Strike: Global Offensive',
 }
 
-export default function RootLayout({
+export default function UserLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
-          {children}
-        </body>
-    </html>
+    <section>
+      {children}
+    </section>
   )
 }

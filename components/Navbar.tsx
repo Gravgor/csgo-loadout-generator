@@ -23,6 +23,9 @@ export default function Navbar() {
                 <Link className="text-text" href="/user">
                     My Account
                 </Link>
+                <Link className="text-text" href="/user/items">
+                    Items In Game
+                </Link>
                 <button className="bg-primary text-white px-4 py-1 relative top-1 rounded-md hover:bg-primary-dark transition-colors duration-300" onClick={() => {
                     signOut()
                 }}>Sign out

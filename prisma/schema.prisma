@@ -34,9 +34,27 @@ model Loadout {
 model Item{
   id        Int      @id @default(autoincrement())
   name      String
+  rarity   String
+  weapon  String
+  pattern String
+  float Float
+  image    String
+  price   Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   loadout   Loadout  @relation(fields: [loadoutId], references: [id])
   loadoutId Int
+}
+
+model ItemStandalone{
+  id        Int      @id @default(autoincrement())
+  name      String
+  rarity   String
+  weapon  String
+  pattern String
+  image    String
+  price   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
