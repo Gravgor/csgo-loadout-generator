@@ -2,7 +2,7 @@
 
 export default function Footer(){
     return (
-        <footer className="bg-background text-white">
+        <footer className=" bg-background text-white">
     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
         <a href="#" className="mr-4 text-gray-400 hover:text-white">Privacy Policy</a>
         <a href="#" className="mr-4 text-gray-400 hover:text-white">Terms of Service</a>

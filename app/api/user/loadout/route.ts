@@ -5,77 +5,100 @@ import { authOptions } from '../../auth/[...nextauth]/route';
 
 const prisma = new PrismaClient();
 
-export async function handler(req: NextRequest, res: NextResponse){
-    //@ts-ignore
-    const session = await getServerSession(req, res, authOptions)
+export async function GET(request: Request){
+    const session = await getServerSession(authOptions)
     if(!session){
-        return NextResponse.redirect('/auth/signin')
-    }
-    if(req.method === 'POST'){
-        const {name, items} = await req.json()
-        const {id} = session.user
-        const loadout = await prisma.loadout.create({
-            data: {
-                name,
-                user: {
-                    connect: {
-                        id
-                    }
-                },
-                items: {
-                    create: items
-                }
-            }
-        })
         return NextResponse.json({
-            status: 200,
-            body: loadout
-        })
-    } else if(req.method === 'GET'){
-        const {id} = session.user
-        const loadouts = await prisma.loadout.findMany({
-            where: {
-                userId: id
-            },
-            include: {
-                items: true
-            }
-        })
-        return NextResponse.json({
-            status: 200,
-            body: loadouts
-        })
-    } else if(req.method === 'DELETE'){
-        const {searchParams} = new URL(req.url)
-        const id = searchParams.get('id')
-        const loadout = await prisma.loadout.delete({
-            where: {
-                id: Number(id)
-            }
-        })
-        return NextResponse.json({
-            status: 200,
-            body: loadout
-        })
-    } else if(req.method === 'PUT'){
-        const {searchParams} = new URL(req.url)
-        const id = searchParams.get('id')
-        const {name, items} = await req.json()
-        const loadout = await prisma.loadout.update({
-            where: {
-                id: Number(id)
-            },
-            data: {
-                name,
-                items: {
-                    deleteMany: {},
-                    create: items
-                }
-            }
-        })
-        return NextResponse.json({
-            status: 200,
-            body: loadout
+            error: 'You must be signed in to view the protected content on this page.',
+            status: 401
         })
     }
+    const {id} = session.user
+    const loadouts = await prisma.loadout.findMany({
+        where: {
+            userId: id
+        },
+        include: {
+            items: true
+        }
+    })
+    if(!loadouts){
+        return NextResponse.json({
+            error: 'No loadouts found.',
+            status: 404
+        })
+    } else {
+        return NextResponse.json(loadouts)
+    }
+}
+
+export async function POST(request: Request){
+    const session = await getServerSession(authOptions)
+    if(!session){
+        return NextResponse.json({
+            error: 'You must be signed in to view the protected content on this page.',
+            status: 401
+        })
+    }
+    const {id} = session.user
+    const {name, items} = await request.json()
+    const loadout = await prisma.loadout.create({
+        data: {
+            name,
+            user: {
+                connect: {
+                    id
+                }
+            },
+            items: {
+                create: items
+            }
+        }
+    })
+    return NextResponse.json(loadout)
+}
+
+
+export async function DELETE(request: Request){
+    const session = await getServerSession(authOptions)
+    if(!session){
+        return NextResponse.json({
+            error: 'You must be signed in to view the protected content on this page.',
+            status: 401
+        })
+    }
+    const {searchParams} = new URL(request.url)
+    const id = searchParams.get('id')
+    const loadout = await prisma.loadout.delete({
+        where: {
+            id: Number(id)
+        }
+    })
+    return NextResponse.json(loadout)
+}
+
+export async function PUT(request: Request){
+    const session = await getServerSession(authOptions)
+    if(!session){
+        return NextResponse.json({
+            error: 'You must be signed in to view the protected content on this page.',
+            status: 401
+        })
+    }
+    const {searchParams} = new URL(request.url)
+    const id = searchParams.get('id')
+    const {name, items} = await request.json()
+    const loadout = await prisma.loadout.update({
+        where: {
+            id: Number(id)
+        },
+        data: {
+            name,
+            items: {
+                deleteMany: {},
+                create: items
+            }
+        }
+    })
+    return NextResponse.json(loadout)
 }
